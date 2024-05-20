@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Base project setup", "1. Base project setup", "{A60A4D2D-4948-458B-88EC-597FCA2C854B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripApp", "TripApp\TripApp.csproj", "{37C57C61-A5CE-4894-91A9-435E239C5BAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{37C57C61-A5CE-4894-91A9-435E239C5BAA} = {A60A4D2D-4948-458B-88EC-597FCA2C854B}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37C57C61-A5CE-4894-91A9-435E239C5BAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C57C61-A5CE-4894-91A9-435E239C5BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C57C61-A5CE-4894-91A9-435E239C5BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C57C61-A5CE-4894-91A9-435E239C5BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
