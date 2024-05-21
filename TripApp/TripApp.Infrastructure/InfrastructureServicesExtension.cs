@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Trip.Infrastructure.Repository;
-using TripApp.Core.Repository;
+using TripApp.Application.Repository;
 
 namespace Trip.Infrastructure;
 

@@ -1,8 +1,8 @@
 ﻿using TripApp.Application.DTOs;
 using TripApp.Application.Mappers;
+using TripApp.Application.Repository;
 using TripApp.Application.Services.Interfaces;
 using TripApp.Core.Model;
-using TripApp.Core.Repository;
 
 namespace TripApp.Application.Services;
 

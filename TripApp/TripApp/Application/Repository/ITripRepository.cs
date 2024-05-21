@@ -1,6 +1,6 @@
 ﻿using TripApp.Core.Models;
 
-namespace TripApp.Core.Repository;
+namespace TripApp.Application.Repository;
 
 public interface ITripRepository
 {

@@ -1,4 +1,4 @@
-﻿using TripApp.Core.Repository;
+﻿using TripApp.Application.Repository;
 using TripApp.Infrastructure.Repository;
 
 namespace TripApp.Infrastructure;

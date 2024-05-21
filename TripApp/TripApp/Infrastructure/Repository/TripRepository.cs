@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TripApp.Application.Repository;
 using TripApp.Core.Models;
-using TripApp.Core.Repository;
 
 namespace TripApp.Infrastructure.Repository;
 
