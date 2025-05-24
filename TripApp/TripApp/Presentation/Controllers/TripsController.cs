@@ -39,11 +39,7 @@ public class TripController(
         try
         {
             var isRemoved = await clientService.DeleteClientAsync(idClient);
-            return isRemoved ? Ok() : StatusCode(500);
-        }
-        catch (BaseExceptions.NotFoundException e)
-        {
-            return NotFound(e.Message);
+            return isRemoved ? NoContent() : NotFound();
         }
         catch (ClientExceptions.ClientHasTripsException e)
         {
