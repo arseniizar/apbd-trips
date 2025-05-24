@@ -3,13 +3,13 @@ using TripApp.Core.Models;
 
 namespace TripApp.Infrastructure;
 
-public partial class TripdbContext : DbContext
+public partial class TripContext : DbContext
 {
     private readonly string? _connectionString;
     
-    public TripdbContext() { }
+    public TripContext() { }
 
-    public TripdbContext(IConfiguration configuration, DbContextOptions<TripdbContext> options)
+    public TripContext(IConfiguration configuration, DbContextOptions<TripContext> options)
         : base(options)
     {
         _connectionString = configuration.GetConnectionString("DefaultConnection") ??
@@ -22,7 +22,7 @@ public partial class TripdbContext : DbContext
 
     public virtual DbSet<Country> Countries { get; set; }
 
-    public virtual DbSet<Trip> Trips { get; set; }
+    public virtual DbSet<Core.Models.Trip> Trips { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -90,7 +90,7 @@ public partial class TripdbContext : DbContext
                     });
         });
 
-        modelBuilder.Entity<Trip>(entity =>
+        modelBuilder.Entity<Core.Models.Trip>(entity =>
         {
             entity.HasKey(e => e.IdTrip).HasName("Trip_pk");
 

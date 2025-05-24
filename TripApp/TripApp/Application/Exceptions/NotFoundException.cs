@@ -1,0 +1,2 @@
+namespace TripApp.Application.Exceptions;
+

@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Base project setup", "1. Base project setup", "{A60A4D2D-4948-458B-88EC-597FCA2C854B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Single-project solution", "1. Single-project solution", "{A60A4D2D-4948-458B-88EC-597FCA2C854B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripApp", "TripApp\TripApp.csproj", "{37C57C61-A5CE-4894-91A9-435E239C5BAA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Multiple projects solution", "2. Multiple projects solution", "{60BD10E4-74E0-4831-A730-013D3DD78AED}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Multi-project solution", "2. Multi-project solution", "{60BD10E4-74E0-4831-A730-013D3DD78AED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripApp.API", "TripApp.API\TripApp.API.csproj", "{26C57245-3C5B-49D4-A371-D9EE34140C46}"
 EndProject

@@ -1,25 +1,53 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TripApp.Application.DTOs;
+using TripApp.Application.Exceptions;
 using TripApp.Application.Services.Interfaces;
+using TripApp.Core.Models;
 
 namespace TripApp.Presentation.Controllers;
 
 [ApiController]
 [Route("api/trips")]
-public class TripsController : ControllerBase
+public class TripController(
+    ITripService tripService,
+    IClientService clientService) 
+    : ControllerBase
 {
-    private readonly ITripService _tripService;
-
-    public TripsController(ITripService tripService)
+    [HttpGet]
+    [ProducesResponseType(typeof(PaginatedResult<GetTripDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<GetTripDto>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetTrips(
+        [FromQuery(Name = "page")] int? page,
+        [FromQuery(Name = "pageSize")] int? pageSize,
+        CancellationToken cancellationToken = default)
     {
-        _tripService = tripService;
+        if (page is null && pageSize is null)
+        {
+            var trips = await tripService.GetAllTripsAsync();
+            return Ok(trips);
+        }
+
+        var paginatedTrips = await tripService.GetPaginatedTripsAsync(page ?? 1, pageSize ?? 10);
+        return Ok(paginatedTrips);
     }
 
-    [HttpGet]
-    public async Task<IActionResult> GetTrips([FromQuery] int? page, int? pageSize)
+    [HttpDelete("{idClient:int}")]
+    public async Task<IActionResult> DeleteTrip(
+        int idClient,
+        CancellationToken cancellationToken = default)
     {
-        if (page is null || pageSize is null)
-            return Ok(await _tripService.GetAllTripsAsync());
-
-        return Ok(await _tripService.GetPaginatedTripsAsync(page.Value, pageSize.Value));
+        try
+        {
+            var isRemoved = await clientService.DeleteClientAsync(idClient);
+            return isRemoved ? Ok() : StatusCode(500);
+        }
+        catch (BaseExceptions.NotFoundException e)
+        {
+            return NotFound(e.Message);
+        }
+        catch (ClientExceptions.ClientHasTripsException e)
+        {
+            return BadRequest(e.Message);
+        }
     }
 }
