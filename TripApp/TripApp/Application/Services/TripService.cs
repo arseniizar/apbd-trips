@@ -11,7 +11,7 @@ public class TripService(ITripRepository tripRepository) : ITripService
     public async Task<PaginatedResult<GetTripDto>> GetPaginatedTripsAsync(int page = 1, int pageSize = 10)
     {
         if (page < 1) page = 1;
-        if (pageSize < 10) page = 10;
+        if (pageSize < 10) pageSize = 10;
         var result = await tripRepository.GetPaginatedTripsAsync(page, pageSize);
 
         var mappedTrips = new PaginatedResult<GetTripDto>

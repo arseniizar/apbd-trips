@@ -11,14 +11,11 @@ public class TripRepository(TripContext tripDbContext) : ITripRepository
         var tripsQuery = tripDbContext.Trips
             .Include(e => e.ClientTrips).ThenInclude(e => e.IdClientNavigation)
             .Include(e => e.IdCountries)
-            .OrderBy(e => e.DateFrom);
+            .OrderByDescending(e => e.DateFrom);
 
         var tripsCount = await tripsQuery.CountAsync();
         var totalPages = tripsCount / pageSize;
-        var trips = await tripDbContext.Trips
-            .Include(e => e.ClientTrips).ThenInclude(e => e.IdClientNavigation)
-            .Include(e => e.IdCountries)
-            .OrderBy(e => e.DateFrom)
+        var trips = await tripsQuery
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
