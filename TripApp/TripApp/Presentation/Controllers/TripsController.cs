@@ -9,8 +9,7 @@ namespace TripApp.Presentation.Controllers;
 [ApiController]
 [Route("api/trips")]
 public class TripController(
-    ITripService tripService,
-    IClientService clientService) 
+    ITripService tripService) 
     : ControllerBase
 {
     [HttpGet]
@@ -29,21 +28,5 @@ public class TripController(
 
         var paginatedTrips = await tripService.GetPaginatedTripsAsync(page ?? 1, pageSize ?? 10);
         return Ok(paginatedTrips);
-    }
-
-    [HttpDelete("{idClient:int}")]
-    public async Task<IActionResult> DeleteTrip(
-        int idClient,
-        CancellationToken cancellationToken = default)
-    {
-        try
-        {
-            var isRemoved = await clientService.DeleteClientAsync(idClient);
-            return isRemoved ? NoContent() : NotFound();
-        }
-        catch (ClientExceptions.ClientHasTripsException e)
-        {
-            return BadRequest(e.Message);
-        }
     }
 }
