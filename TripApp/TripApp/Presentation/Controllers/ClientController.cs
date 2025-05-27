@@ -9,6 +9,9 @@ namespace TripApp.Presentation.Controllers;
 public class ClientController(IClientService clientService) : ControllerBase
 {
     [HttpDelete("{id:int}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> DeleteClient(
         int id,
         CancellationToken cancellationToken = default)
@@ -16,7 +19,7 @@ public class ClientController(IClientService clientService) : ControllerBase
         try
         {
             var isRemoved = await clientService.DeleteClientAsync(id);
-            return isRemoved ? Ok() : NotFound();
+            return isRemoved ? NoContent() : NotFound();
         }
         catch (ClientExceptions.ClientHasTripsException e)
         {
