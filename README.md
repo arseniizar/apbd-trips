@@ -1,10 +1,4 @@
-## How to scaffold database (EF Core DB First approach)
-1. Install the dotnet-ef tool globally
-   ```
-   dotnet tool install --global dotnet-ef --version 8.0.5
-   ```
-2. Install packages `Microsoft.EntityFrameworkCore.SqlServer` and `Microsoft.EntityFrameworkCore.Design`   
-3. Execute the command
-   ```
-   dotnet ef dbcontext scaffold "ConnectionString" Microsoft.EntityFrameworkCore.SqlServer -o OutputFolder
-   ```
+## Homework updates:
+1. TripApp.Api - TripController AssignClientToTrip method
+2. Additional methods in TripRepostiry (TripApp.Infrastructure) and ITripRepository (TripApp.Application)
+3. Updated TripService and ITripService in TripApp.Application
