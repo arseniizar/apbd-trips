@@ -43,4 +43,40 @@ public class TripRepository(TripContext tripDbContext) : ITripRepository
             .OrderBy(e => e.DateFrom)
             .ToListAsync();
     }
+
+    public async Task<TripApp.Core.Model.Trip?> GetTripByIdAsync(int tripId)
+    {
+        return await tripDbContext.Trips
+            .FirstOrDefaultAsync(t => t.IdTrip == tripId);
+    }
+
+    public async Task<bool> ClientExistsWithPeselAsync(string pesel)
+    {
+        return await tripDbContext.Clients
+            .AnyAsync(c => c.Pesel == pesel);
+    }
+
+    public async Task<bool> IsClientRegisteredForTripAsync(int tripId, string pesel)
+    {
+        return await tripDbContext.ClientTrips
+            .Include(ct => ct.IdClientNavigation)
+            .AnyAsync(ct => ct.IdTrip == tripId && ct.IdClientNavigation.Pesel == pesel);
+    }
+
+    public async Task<Client> AddClientAsync(Client client)
+    {
+        await tripDbContext.Clients.AddAsync(client);
+        return
+            client; 
+    }
+
+    public async Task AddClientTripAsync(ClientTrip clientTrip)
+    {
+        await tripDbContext.ClientTrips.AddAsync(clientTrip);
+    }
+
+    public async Task<int> SaveChangesAsync()
+    {
+        return await tripDbContext.SaveChangesAsync();
+    }
 }
